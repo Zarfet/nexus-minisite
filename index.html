@@ -52,6 +52,21 @@ nav{
 .nav-link:hover,.nav-link.active{color:var(--accent);}
 .nav-cta{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:7px 18px;border-radius:6px;background:var(--fg);color:#FFFFFF;border:none;cursor:pointer;margin-left:12px;text-decoration:none;transition:opacity 0.15s;}
 .nav-cta:hover{opacity:0.85;}
+.nav-video-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:6px;border:0.5px solid var(--border-2);background:var(--surface);color:var(--fg-2);cursor:pointer;transition:all 0.15s;flex-shrink:0;}
+.nav-video-btn:hover{background:var(--accent-light);border-color:var(--accent-bd);color:var(--accent);}
+
+/* ── VIDEO MODAL ── */
+.vmodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:none;align-items:center;justify-content:center;padding:24px;}
+.vmodal-overlay.open{display:flex;}
+.vmodal-overlay.fullscreen-mode{padding:0;}
+.vmodal-box{position:relative;background:#000;border-radius:12px;overflow:hidden;width:100%;max-width:880px;box-shadow:0 32px 80px rgba(0,0,0,0.6);}
+.vmodal-overlay.fullscreen-mode .vmodal-box{max-width:100%;border-radius:0;height:100vh;display:flex;flex-direction:column;}
+.vmodal-bar{display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:8px 10px;background:rgba(0,0,0,0.7);position:absolute;top:0;left:0;right:0;z-index:10;}
+.vmodal-overlay.fullscreen-mode .vmodal-bar{position:relative;}
+.vmodal-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,0.1);border:none;color:#fff;cursor:pointer;transition:background 0.15s;}
+.vmodal-btn:hover{background:rgba(255,255,255,0.22);}
+.vmodal-video{width:100%;display:block;}
+.vmodal-overlay.fullscreen-mode .vmodal-video{flex:1;height:0;min-height:0;object-fit:contain;}
 
 /* ── SECTIONS ── */
 section{
@@ -239,8 +254,70 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
     <a href="#algorithm" class="nav-link">11 factors</a>
     <a href="#open" class="nav-link">Open source</a>
   </div>
-  <a href="https://nexus-flame-delta.vercel.app" target="_blank" class="nav-cta">Start assessment →</a>
+  <div style="display:flex;align-items:center;gap:6px;margin-left:12px;">
+    <button class="nav-video-btn" id="openVideoBtn" title="Watch Nexus video" aria-label="Watch Nexus video">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+    <a href="https://nexus-flame-delta.vercel.app" target="_blank" class="nav-cta" style="margin-left:0;">Start assessment →</a>
+  </div>
 </nav>
+
+<!-- VIDEO MODAL -->
+<div class="vmodal-overlay" id="videoModal" role="dialog" aria-modal="true" aria-label="Nexus video">
+  <div class="vmodal-box" id="videoBox">
+    <div class="vmodal-bar">
+      <button class="vmodal-btn" id="fullscreenBtn" title="Toggle fullscreen" aria-label="Toggle fullscreen">
+        <svg id="fsIconExpand" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        <svg id="fsIconCollapse" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="10" y1="14" x2="3" y2="21"/><line x1="21" y1="3" x2="14" y2="10"/></svg>
+      </button>
+      <button class="vmodal-btn" id="closeVideoBtn" title="Close" aria-label="Close video">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <video class="vmodal-video" id="nexusVideo" controls preload="metadata" src="Nexus.m4v"></video>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay = document.getElementById('videoModal');
+  const video   = document.getElementById('nexusVideo');
+  const openBtn = document.getElementById('openVideoBtn');
+  const closeBtn= document.getElementById('closeVideoBtn');
+  const fsBtn   = document.getElementById('fullscreenBtn');
+  const fsExp   = document.getElementById('fsIconExpand');
+  const fsCol   = document.getElementById('fsIconCollapse');
+  function openModal(){
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){
+    if(document.fullscreenElement) document.exitFullscreen();
+    overlay.classList.remove('open');
+    video.pause();
+    document.body.style.overflow='';
+  }
+  function toggleFs(){
+    if(!document.fullscreenElement){
+      (video.requestFullscreen||video.webkitRequestFullscreen||video.mozRequestFullScreen).call(video);
+    } else {
+      (document.exitFullscreen||document.webkitExitFullscreen||document.mozCancelFullScreen).call(document);
+    }
+  }
+  /* Sync icon with actual fullscreen state */
+  document.addEventListener('fullscreenchange', function(){
+    const inFs = !!document.fullscreenElement;
+    fsExp.style.display = inFs ? 'none' : '';
+    fsCol.style.display = inFs ? ''     : 'none';
+  });
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  fsBtn.addEventListener('click', toggleFs);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && overlay.classList.contains('open')) closeModal(); });
+})();
+</script>
 
 
 <!-- ══════════════════════════════════════════

@@ -250,9 +250,10 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
     <a href="#cases" class="nav-link">Evidence</a>
     <a href="#numbers" class="nav-link">Numbers</a>
     <a href="#framework" class="nav-link">Framework</a>
+    <a href="#method" class="nav-link">Method</a>
     <a href="#tool" class="nav-link">The tool</a>
     <a href="#algorithm" class="nav-link">11 factors</a>
-    <a href="#open" class="nav-link">Open source</a>
+    <a href="#open" class="nav-link">Contributions</a>
   </div>
   <div style="display:flex;align-items:center;gap:6px;margin-left:12px;">
     <button class="nav-video-btn" id="openVideoBtn" title="Watch Nexus video" aria-label="Watch Nexus video">
@@ -328,7 +329,7 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
     <div>
       <div class="hero-eyebrow"><span class="pulse"></span>Evidence-based interface selection</div>
       <h1>Has your design<br>recommendation<br>ever been <em>overruled?</em></h1>
-      <p class="lead" style="margin-top:1.5rem;">Because someone more senior had a different opinion. That pattern has a name: the HiPPO effect. NEXUS gives designers a structured argument that holds its ground in the room.</p>
+      <p class="lead" style="margin-top:1.5rem;">Because someone more senior had a different opinion. That pattern has a name: the HiPPO effect <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--fg-3);">(McAfee &amp; Brynjolfsson, 2012)</span>. NEXUS gives designers a structured argument that holds its ground in the room.</p>
     </div>
     <div class="hero-img-wrap">
       <img src="hippo.png" alt="Hippo">
@@ -355,14 +356,14 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
         <div class="fw-row">
           <div>
             <div class="fw-name">Design Thinking</div>
-            <div class="fw-desc">How to improve a product once you know what it is</div>
+            <div class="fw-desc">How to improve a product once you know what it is <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--fg-3);">(Brown, 2008)</span></div>
           </div>
           <span class="fw-status has">Exists</span>
         </div>
         <div class="fw-row">
           <div>
             <div class="fw-name">User-Centered Design</div>
-            <div class="fw-desc">How to make a product fit its users</div>
+            <div class="fw-desc">How to make a product fit its users <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--fg-3);">(Norman, 2013)</span></div>
           </div>
           <span class="fw-status has">Exists</span>
         </div>
@@ -528,9 +529,45 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
 <!-- ══════════════════════════════════════════
      6. EVIDENCE
 ══════════════════════════════════════════ -->
+
+<section id="method">
+  <div class="container">
+    <div class="section-label">05 How the research was built</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div>
+        <h2>Three phases.<br><em>One direction.</em></h2>
+        <p class="lead" style="margin-top:1rem;">The framework was not designed from intuition. It was built from literature, tested against history, and validated with real practitioners.</p>
+      </div>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-n">01 —</div>
+          <div>
+            <div class="step-title">Framework construction</div>
+            <div class="step-body">A review of the design methodology literature found no established framework specifically addressing interface type selection as a standalone decision. Expert interviews with 15 designers and product managers produced a values taxonomy and assessment structure.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-n">02 —</div>
+          <div>
+            <div class="step-title">Retrospective validation</div>
+            <div class="step-body">Applied the framework to all five documented failures using only information available before each product launched. Target: identify 70% of documented failure factors <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--fg-3);">(Landis &amp; Koch, 1977)</span>. Result: 82%.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-n">03 —</div>
+          <div>
+            <div class="step-title">Proof-of-concept implementation</div>
+            <div class="step-body">Built NEXUS and tested it with 15 designers and product managers. Validated against failures and successes alike. The framework works in practice, not just on paper.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="evidence">
   <div class="container">
-    <div class="section-label">05 Validation</div>
+    <div class="section-label">06 Validation</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
       <div>
         <h2>Did it see what<br>went <em>wrong?</em></h2>
@@ -538,7 +575,7 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
         <div class="metrics-row" style="grid-template-columns:1fr;margin-top:1.5rem;">
           <div class="metric-card">
             <div class="metric-val">82%</div>
-            <div class="metric-desc">failure factors identified across all five cases. Target was 70%.</div>
+            <div class="metric-desc">failure factors identified across all five cases. Target was 70% <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--fg-3);">(Landis &amp; Koch, 1977)</span>.</div>
           </div>
           <div class="metric-card">
             <div class="metric-val">70%</div>
@@ -572,7 +609,7 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
 <section id="tool">
   <div class="container">
     <div>
-      <div class="section-label">06 The tool</div>
+      <div class="section-label">07 The tool</div>
       <h2>NEXUS: A tool that<br><em>belongs to everyone.</em></h2>
       <div class="tool-cards">
         <div class="tool-card">
@@ -613,7 +650,7 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
 ══════════════════════════════════════════ -->
 <section id="algorithm">
   <div class="container">
-    <div class="section-label">07 How the framework weighs decisions</div>
+    <div class="section-label">08 How the framework weighs decisions</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:0.5rem;">
       <h2>11 factors.<br><em>One clear direction.</em></h2>
       <p class="lead" style="font-size:0.95rem;">Built on DIKW methodology. Every weight is transparent. Each factor comes from real cases where ignoring it cost millions.</p>
@@ -689,10 +726,10 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
 ══════════════════════════════════════════ -->
 <section id="open">
   <div class="container">
-    <div class="section-label">08 Why open source</div>
+    <div class="section-label">09 What this research contributes</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:1.5rem;">
-      <h2>The framework belongs<br>to <em>everyone who uses it.</em></h2>
-      <p class="lead" style="font-size:0.95rem;">A commercial tool belongs to whoever builds it. An open-source tool belongs to the community. Fork it, adapt it, add new cases.</p>
+      <h2>Four contributions.<br><em>One open platform.</em></h2>
+      <p class="lead" style="font-size:0.95rem;">Built to be shared. A commercial tool belongs to whoever builds it. An open-source tool belongs to the community.</p>
     </div>
     <div class="contrib-grid">
       <div class="contrib-card">
@@ -730,7 +767,7 @@ table.ev tr:nth-child(even) td{background:var(--surface-2);}
 <script>
 // Active nav on scroll
 (function(){
-  var ids = ['hero','gap','cases','numbers','framework','evidence','tool','algorithm','open'];
+  var ids = ['hero','gap','cases','numbers','framework','method','evidence','tool','algorithm','open'];
   var links = document.querySelectorAll('.nav-link');
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
